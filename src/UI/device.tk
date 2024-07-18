@@ -145,11 +145,15 @@ proc DeviceSetup:Open {} {
   frame .deviceSetup.attached
     label .deviceSetup.attached.label -text "Attached Devices" \
         -relief raised
-    scrollbar .deviceSetup.attached.scroll -relief raised \
+    scrollbar .deviceSetup.attached.scroll_y -relief raised \
         -command ".deviceSetup.attached.list yview" \
         -takefocus 0 -highlightthickness 0
+    scrollbar .deviceSetup.attached.scroll_x -orient horizontal -relief raised \
+        -command ".deviceSetup.attached.list xview" \
+        -takefocus 0 -highlightthickness 0
     listbox .deviceSetup.attached.list -relief raised \
-        -yscroll ".deviceSetup.attached.scroll set" \
+        -xscroll ".deviceSetup.attached.scroll_y set" \
+        -xscroll ".deviceSetup.attached.scroll_x set" \
         -takefocus 0 -highlightthickness 0
     frame .deviceSetup.attached.buttons
       button .deviceSetup.attached.buttons.remove -text "Detach" \
@@ -169,18 +173,23 @@ proc DeviceSetup:Open {} {
 
     pack .deviceSetup.attached.label -side top -fill x
     pack .deviceSetup.attached.buttons -side bottom -fill x -expand 1
-    pack .deviceSetup.attached.scroll -side left -fill y
+    pack .deviceSetup.attached.scroll_y -side left -fill y
+    pack .deviceSetup.attached.scroll_x -side bottom -fill x
     pack .deviceSetup.attached.list -side left -fill y
 
   ## Create the "Available Devices" area
   frame .deviceSetup.available
     label .deviceSetup.available.label -text "Available Devices" \
         -relief raised
-    scrollbar .deviceSetup.available.scroll -relief raised \
+    scrollbar .deviceSetup.available.scroll_y -relief raised \
         -command ".deviceSetup.available.list yview" \
         -takefocus 0 -highlightthickness 0
+    scrollbar .deviceSetup.available.scroll_x -orient horizontal -relief raised \
+        -command ".deviceSetup.available.list xview" \
+        -takefocus 0 -highlightthickness 0
     listbox .deviceSetup.available.list -relief raised \
-        -yscroll ".deviceSetup.available.scroll set" \
+        -yscroll ".deviceSetup.available.scroll_y set" \
+        -xscroll ".deviceSetup.available.scroll_y set" \
         -takefocus 0 -highlightthickness 0
     bind .deviceSetup.available.list <Double-1> {
         if {[llength [.deviceSetup.available.list curselection]] != 0} {
@@ -202,7 +211,8 @@ proc DeviceSetup:Open {} {
 
     pack .deviceSetup.available.label -side top -fill x
     pack .deviceSetup.available.buttons -side bottom -fill x -expand 1
-    pack .deviceSetup.available.scroll -side left -fill y
+    pack .deviceSetup.available.scroll_y -side left -fill y
+    pack .deviceSetup.available.scroll_x -side bottom -fill x
     pack .deviceSetup.available.list -side left -fill y
 
   ## Create the "Dismiss" button
