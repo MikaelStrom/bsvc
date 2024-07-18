@@ -383,7 +383,7 @@ proc ProgramListing:SetApplicationMode {mode} {
     bind .programListing <Control-f> {ProgramListing:Find; break}
     bind .programListing <Control-l> {ProgramListing:ManualLoad; break}
 
-    bind .programListing.pack.text <Any-ButtonRelease> \
+    bind .programListing.pack.text <ButtonRelease-1> \
         {ProgramListing:ToggleBreakpoint %x %y}
 
   } elseif {$mode == "StartupMode"} {
@@ -415,7 +415,7 @@ proc ProgramListing:SetApplicationMode {mode} {
     bind .programListing <Control-l> {break}
     bind .programListing <Control-f> {break}
 
-    bind .programListing.pack.text <Any-ButtonRelease> "break"
+    bind .programListing.pack.text <ButtonRelease-1> "break"
   }
 }
 
